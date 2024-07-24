@@ -18,11 +18,22 @@ class ReservationForm(forms.ModelForm):
     
     def clean(self):
         cleaned_data = super().clean()
+        common_space = cleaned_data.get('common_space')
         start_time = cleaned_data.get("start_time")
         end_time = cleaned_data.get("end_time")
 
         if end_time and start_time and end_time > start_time + timedelta(hours=4):
             raise forms.ValidationError("end_time must be within 4 hours of start_time")
+        
+        if start_time and end_time:
+            overlapping_reservations = Reservation.objects.filter(
+                common_space=common_space,
+                start_time__lt=end_time,
+                end_time__gt=start_time
+            )
+            if overlapping_reservations.exists():
+                f"Ya hay una reserva para este periodo de tiempo: "
+                
         
         return cleaned_data    
 
