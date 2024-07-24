@@ -6,6 +6,9 @@ from .forms import ReservationForm
 def index(req):
     return render(req,"landing.html")
 
+def login_register(request):
+    return render(request, 'register.html')
+
 @login_required
 def reservation_list(request):
     reservations = Reservation.objects.filter(user=request.user)

@@ -16,9 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from codejam.views import index 
+from codejam.views import index
+from codejam.views import login_register
 
 urlpatterns = [
+    path('login/', login_register, name='login_register'),
     path('admin/', admin.site.urls),
     path('', index),
     path('reservations/',include("codejam.urls"))
