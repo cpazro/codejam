@@ -76,14 +76,10 @@ def reservation_create(request):
     else:
         form = ReservationForm()
         espacios = CommonSpace.objects.all()
-        areas = Area.objects.all()
-        categorias = Category.objects.all()
-        reservaciones = Reservation.objects.all()
+     
         
 
     return render(request, 'reservation_form.html', {'form': form,
-                                                     'espacios':espacios,
-                                                     'categorias':categorias,
-                                                     'areas':areas,
-                                                     'reservaciones':reservaciones,
-                                                     })
+                                                     'espacios':espacios}                          
+                                                    
+                                                     )

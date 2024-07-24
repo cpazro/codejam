@@ -23,14 +23,14 @@
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title text-center">Register</h5>
+                <h5 class="card-title text-center">Registrarse</h5>
                 <form method="POST">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <button type="submit" class="btn btn-primary btn-block">Register</button>
+                    <button type="submit" class="btn btn-primary btn-block">Registrarse</button>
                 </form>
                 <div class="text-center mt-3">
-                    <a href="{% url 'login_register' %}">Already have an account? Login</a>
+                    <a href="{% url 'login_register' %}">ya tienes cuenta? Login</a>
                 </div>
             </div>
         </div>
