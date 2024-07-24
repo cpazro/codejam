@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login / Register</title>
+    <title>Register</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
@@ -23,109 +23,19 @@
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title text-center">Login</h5>
-                <form id="loginForm" onsubmit="validateLoginForm(event)">
-                    <div class="form-group">
-                        <label for="loginEmail">Email address</label>
-                        <input type="email" class="form-control" id="loginEmail" aria-describedby="emailHelp" required>
-                        <div class="invalid-feedback">
-                            Please enter a valid email address.
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="loginPassword">Password</label>
-                        <input type="password" class="form-control" id="loginPassword" required>
-                        <div class="invalid-feedback">
-                            Please enter your password.
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                <h5 class="card-title text-center">Register</h5>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary btn-block">Register</button>
                 </form>
                 <div class="text-center mt-3">
-                    <a href="#" data-toggle="modal" data-target="#registerModal">Don't have an account? Register</a>
+                    <a href="{% url 'login_register' %}">Already have an account? Login</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Register Modal -->
-    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="registerModalLabel">Register</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="registerForm" onsubmit="validateRegisterForm(event)">
-                        <div class="form-group">
-                            <label for="registerName">Full Name</label>
-                            <input type="text" class="form-control" id="registerName" required>
-                            <div class="invalid-feedback">
-                                Please enter your full name.
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="registerEmail">Email address</label>
-                            <input type="email" class="form-control" id="registerEmail" aria-describedby="emailHelp" required>
-                            <div class="invalid-feedback">
-                                Please enter a valid email address.
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="registerPassword">Password</label>
-                            <input type="password" class="form-control" id="registerPassword" required>
-                            <div class="invalid-feedback">
-                                Please enter your password.
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="registerConfirmPassword">Confirm Password</label>
-                            <input type="password" class="form-control" id="registerConfirmPassword" required>
-                            <div class="invalid-feedback">
-                                Please confirm your password.
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block">Register</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function validateLoginForm(event) {
-            event.preventDefault();
-            var form = document.getElementById('loginForm');
-            if (form.checkValidity() === false) {
-                event.stopPropagation();
-            } else {
-                alert('Login successful');
-            }
-            form.classList.add('was-validated');
-        }
-
-        function validateRegisterForm(event) {
-            event.preventDefault();
-            var form = document.getElementById('registerForm');
-            var password = document.getElementById('registerPassword').value;
-            var confirmPassword = document.getElementById('registerConfirmPassword').value;
-
-            if (form.checkValidity() === false || password !== confirmPassword) {
-                event.stopPropagation();
-                if (password !== confirmPassword) {
-                    document.getElementById('registerConfirmPassword').setCustomValidity("Passwords do not match");
-                } else {
-                    document.getElementById('registerConfirmPassword').setCustomValidity("");
-                }
-            } else {
-                alert('Registration successful');
-            }
-            form.classList.add('was-validated');
-        }
-    </script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

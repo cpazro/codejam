@@ -1,4 +1,6 @@
 from django import forms
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 from .models import Reservation
 
 class ReservationForm(forms.ModelForm):
@@ -11,3 +13,10 @@ class ReservationForm(forms.ModelForm):
             'end_time': forms.DateTimeInput(attrs={'class': 'form-control', 'type': 'datetime-local'}),
             'purpose': forms.TextInput(attrs={'class': 'form-control'}),
         }
+
+class RegisterForm(UserCreationForm):
+    email = forms.EmailField(required=True)
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
