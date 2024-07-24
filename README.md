@@ -2,6 +2,7 @@
 
 ## cheat sheet:
 https://dev.to/ericchapman/my-beloved-django-cheat-sheet-2056
+https://www.geeksforgeeks.org/how-to-design-a-database-for-booking-and-reservation-systems/
 
 ## bases:
 - Landing page wireframe
