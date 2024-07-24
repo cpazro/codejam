@@ -1,8 +1,9 @@
 # equifax-codejam
 
 ## cheat sheet:
-https://dev.to/ericchapman/my-beloved-django-cheat-sheet-2056
-https://www.geeksforgeeks.org/how-to-design-a-database-for-booking-and-reservation-systems/
+- https://dev.to/ericchapman/my-beloved-django-cheat-sheet-2056
+- https://www.geeksforgeeks.org/how-to-design-a-database-for-booking-and-reservation-systems/
+- https://agenda-bibliotecas.duoc.cl/reserve/spaces/avaras
 
 ## bases:
 - Landing page wireframe
