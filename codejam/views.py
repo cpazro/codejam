@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .forms import RegisterForm
 from django.contrib.auth.decorators import login_required
-from .models import CommonSpace, Reservation
+from .models import CommonSpace, Reservation, Area, Category
 from .forms import ReservationForm
 from django.core.exceptions import ValidationError
 
@@ -75,4 +75,15 @@ def reservation_create(request):
                 form.add_error(None, e.message)
     else:
         form = ReservationForm()
-    return render(request, 'reservation_form.html', {'form': form})
+        espacios = CommonSpace.objects.all()
+        areas = Area.objects.all()
+        categorias = Category.objects.all()
+        reservaciones = Reservation.objects.all()
+        
+
+    return render(request, 'reservation_form.html', {'form': form,
+                                                     'espacios':espacios,
+                                                     'categorias':categorias,
+                                                     'areas':areas,
+                                                     'reservaciones':reservaciones,
+                                                     })

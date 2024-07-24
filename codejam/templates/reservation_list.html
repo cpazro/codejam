@@ -7,4 +7,6 @@
       <li>{{ reservation.common_space.name }}: {{ reservation.start_time }} - {{ reservation.end_time }}</li>
     {% endfor %}
   </ul>
+  <a class="btn btn-primary btn-lg" href="{% url 'reservation_create' %}" role="button">Reserva aquí</a>
+
 {% endblock %}
