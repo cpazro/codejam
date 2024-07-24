@@ -23,5 +23,5 @@ urlpatterns = [
     path('login/', login_register, name='login_register'),
     path('admin/', admin.site.urls),
     path('', index),
-    path('reservations/',include("codejam.urls"))
+    path('reservations/',include("codejam.urls")),
 ]
