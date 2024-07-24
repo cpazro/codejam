@@ -1,7 +1,7 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>Your Reservations</h1>
+  <h1>Tus Reservas activas</h1>
   <ul>
     {% for reservation in reservations %}
       <li>{{ reservation.common_space.name }}: {{ reservation.start_time }} - {{ reservation.end_time }}</li>
@@ -13,4 +13,6 @@
         {% endif %}
     {% endfor %}
   </ul>
+  <a class="btn btn-primary btn-lg" href="{% url 'reservation_create' %}" role="button">Reserva aquí</a>
+
 {% endblock %}

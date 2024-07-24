@@ -16,6 +16,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .forms import RegisterForm
+from .models import CommonSpace
 
 def login_register(request):
     if request.method == 'POST':
@@ -33,6 +34,11 @@ def login_register(request):
     else:
         form = RegisterForm()
     return render(request, 'register.html', {'form': form})
+
+
+def show_available(req):
+    lugares_disponibles = CommonSpace.objects.all()
+    return render(req, 'reservation_form.html', {'lugares': lugares_disponibles})
 
 
 

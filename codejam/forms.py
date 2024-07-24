@@ -8,12 +8,13 @@ from datetime import timedelta
 class ReservationForm(forms.ModelForm):
     class Meta:
         model = Reservation
-        fields = ['common_space', 'start_time', 'end_time', 'purpose']
+        fields = ['common_space', 'start_time', 'end_time', 'purpose','qty']
         widgets = {
             'common_space': forms.Select(attrs={'class': 'form-control'}),
             'start_time': forms.DateTimeInput(attrs={'class': 'form-control', 'type': 'datetime-local'}),
             'end_time': forms.DateTimeInput(attrs={'class': 'form-control', 'type': 'datetime-local'}),
             'purpose': forms.TextInput(attrs={'class': 'form-control'}),
+            'qty': forms.NumberInput(attrs={'class': 'form-control'}),
         }
     
     def clean(self):
