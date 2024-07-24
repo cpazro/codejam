@@ -33,9 +33,11 @@ class ReservationForm(forms.ModelForm):
             )
             if overlapping_reservations.exists():
                 overlapping_reservation = overlapping_reservations.first()
+                formatted_start_time = overlapping_reservation.start_time.strftime('%d de %B %H:%M')
+                formatted_end_time = overlapping_reservation.end_time.strftime('%H:%M')
                 raise forms.ValidationError(
-                    f"Ya hay una reserva para este periodo de tiempo: "
-                    f"{overlapping_reservation.start_time} - {overlapping_reservation.end_time}."
+                    f"Ya hay una reserva para este periodo de tiempo "
+                    f"en: {overlapping_reservation.common_space} {formatted_start_time} - {formatted_end_time}."
                 )
                 
         
