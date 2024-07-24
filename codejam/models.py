@@ -20,10 +20,18 @@ class Reservation(models.Model):
     end_time = models.DateTimeField()
     purpose = models.CharField(max_length=255)
 
+    #reservar maximo 4 horas
     def save(self, *args, **kwargs):
         if self.end_time > self.start_time + timedelta(hours=4):
             raise ValidationError("end_time el tiempo maximo son 4 horas start_time")
+        
+
+    #solo se permiten reservas en los dias de semana
+        if self.start_time.weekday() >= 5 or self.end_time.weekday() >= 5:
+            raise ValidationError("Reservations can only be made on weekdays (Monday to Friday).")
+
         super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.common_space.name} reservado por {self.user.username} desde {self.start_time} hasta {self.end_time}"
+    
