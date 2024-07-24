@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
@@ -38,7 +38,8 @@ def login_register(request):
 
 @login_required
 def reservation_list(request):
-    reservations = Reservation.objects.filter(user=request.user)
+    reservations = Reservation.objects.all()
+    #reservations = Reservation.objects.filter(user=request.user)
     return render(request, 'reservation_list.html', {'reservations': reservations})
 
 # @login_required
@@ -69,3 +70,12 @@ def reservation_create(request):
     else:
         form = ReservationForm()
     return render(request, 'reservation_form.html', {'form': form})
+
+@login_required
+def cancel_reservation(request, pk):
+    reservation = get_object_or_404(Reservation, pk=pk)
+    if reservation.user == request.user:
+        reservation.delete()
+        return redirect('reservation_list')  # Redirige a la lista de reservas o a la página que prefieras
+    else:
+        return redirect('reservation_list')  # Redirige a la lista de reservas o muestra un mensaje de error

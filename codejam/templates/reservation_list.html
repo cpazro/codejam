@@ -5,6 +5,12 @@
   <ul>
     {% for reservation in reservations %}
       <li>{{ reservation.common_space.name }}: {{ reservation.start_time }} - {{ reservation.end_time }}</li>
+      {% if reservation.user == request.user %}
+            <form action="{% url 'cancel_reservation' reservation.pk %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">Borrar</button>
+            </form>
+        {% endif %}
     {% endfor %}
   </ul>
 {% endblock %}
