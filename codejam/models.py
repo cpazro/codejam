@@ -2,7 +2,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-from datetime import timedelta
+from datetime import timedelta, time
 
 class CommonSpace(models.Model):
     name = models.CharField(max_length=100)
@@ -28,7 +28,10 @@ class Reservation(models.Model):
 
     #solo se permiten reservas en los dias de semana
         if self.start_time.weekday() >= 5 or self.end_time.weekday() >= 5:
-            raise ValidationError("Reservations can only be made on weekdays (Monday to Friday).")
+            raise ValidationError("Solo se puede reservar espacios de Lunes a Viernes.")
+
+        if not (time(8, 0) <= self.start_time.time() <= time(20, 0)) or not (time(8, 0) <= self.end_time.time() <= time(20, 0)):
+            raise ValidationError("Las reservas solo se pueden hacer entre las 8am y las 8pm.")
 
         super().save(*args, **kwargs)
 
