@@ -8,6 +8,10 @@
     <title>Workspace Reservation</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+
+
+
+
 </head>
 <body>
     <!-- Navbar -->
@@ -30,10 +34,11 @@
     </nav>
 
     <!-- Header Section -->
-    <header class="jumbotron text-center" style="background-image: url('{% static 'images/workspace.jpg' %}'); background-size: cover; color: white;">
+    <header class="jumbotron text-center" style="background-image: url('{% static 'workspace.jpg' %}'); background-size: cover; color: white;">
         <div class="container">
-            <h1 class="display-4">Areas de trabajo, primera necesidad, recreación </h1>
-            <a class="btn btn-primary btn-lg" href="" role="button">Reserva aquí</a>
+            <h1 class="display-4">Reserva de Areas </h1>
+            <a class="btn btn-primary btn-lg" href="{% url 'reservation_create' %}" role="button">Reserva aquí</a>
+            <img  class="img-fluid" src="{% static 'funwork.avif' %}" alt="">
         </div>
     </header>
 

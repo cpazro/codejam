@@ -2,25 +2,30 @@
 {% load static %}
 
 {% block content %}
-  <h1>New Reservation</h1>
-  <form method="post">
-    {% csrf_token %}
-    <div class="form-group">
-      <label for="id_common_space">Common Space:</label>
-      {{ form.common_space }}
-    </div>
-    <div class="form-group">
-      <label for="id_start_time">Start Time:</label>
-      {{ form.start_time }}
-    </div>
-    <div class="form-group">
-      <label for="id_end_time">End Time:</label>
-      {{ form.end_time }}
-    </div>
-    <div class="form-group">
-      <label for="id_purpose">Purpose:</label>
-      {{ form.purpose }}
-    </div>
-    <button type="submit" class="btn btn-primary">Save</button>
-  </form>
-{% endblock %}
+
+
+  
+  <h1>Nueva Reserva</h1>
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="id_common_space">Espacio</label>
+        {{ form.common_space }}
+      </div>
+      <div class="form-group">
+        <label for="id_start_time">Fecha:</label>
+        {{ form.start_time }}
+      </div>
+      <div class="form-group">
+        <label for="id_end_time">Fecha termino:</label>
+        {{ form.end_time }}
+      </div>
+      <div class="form-group">
+        <label for="id_purpose">Proposito:</label>
+        {{ form.purpose }}
+      </div>
+      <button type="submit" class="btn btn-primary">Reservar</button>
+    </form>
+    
+    
+    {% endblock %}

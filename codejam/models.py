@@ -2,14 +2,26 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
+class Category(models.Model):
+    name = models.CharField(max_length=150, unique=True)
+    def __str__(self):
+        return self.name
+
+class Area(models.Model):
+    name = models.CharField(max_length=150, unique=True)
+    def __str__(self):
+        return self.name
+
 class CommonSpace(models.Model):
-    name = models.CharField(max_length=100)
+    area = models.ForeignKey(Area, on_delete=models.CASCADE)
     description = models.TextField()
     capacity = models.IntegerField()
     location = models.CharField(max_length=255)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return f'{self.area} -- {self.category}'
 
 class Reservation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
