@@ -23,7 +23,7 @@ class ReservationForm(forms.ModelForm):
         end_time = cleaned_data.get("end_time")
 
         if end_time and start_time and end_time > start_time + timedelta(hours=4):
-            raise forms.ValidationError("end_time must be within 4 hours of start_time")
+            raise forms.ValidationError("La reserva no puede durar más de 4 horas.")
         
         if start_time and end_time:
             overlapping_reservations = Reservation.objects.filter(
@@ -32,7 +32,11 @@ class ReservationForm(forms.ModelForm):
                 end_time__gt=start_time
             )
             if overlapping_reservations.exists():
-                f"Ya hay una reserva para este periodo de tiempo: "
+                overlapping_reservation = overlapping_reservations.first()
+                raise forms.ValidationError(
+                    f"Ya hay una reserva para este periodo de tiempo: "
+                    f"{overlapping_reservation.start_time} - {overlapping_reservation.end_time}."
+                )
                 
         
         return cleaned_data    
