@@ -16,8 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from codejam.views import index 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include("codejam.urls"))
+    path('', index),
+    path('reservations/',include("codejam.urls"))
 ]

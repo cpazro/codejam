@@ -3,6 +3,9 @@ from django.contrib.auth.decorators import login_required
 from .models import CommonSpace, Reservation
 from .forms import ReservationForm
 
+def index(req):
+    return render(req,"landing.html")
+
 @login_required
 def reservation_list(request):
     reservations = Reservation.objects.filter(user=request.user)

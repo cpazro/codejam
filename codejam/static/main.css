@@ -1,0 +1,38 @@
+/* main.css */
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.jumbotron {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+.jumbotron h1 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.jumbotron p {
+    font-size: 1.5rem;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+section h2 {
+    margin-bottom: 2rem;
+}
+
+blockquote {
+    font-size: 1.25rem;
+    margin: 2rem 0;
+}
+
+blockquote .blockquote-footer {
+    font-size: 1rem;
+    color: #6c757d;
+}
